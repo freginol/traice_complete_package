@@ -1,0 +1,57 @@
+@model InventoryManagement.App.Models.InventoryItemViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Remove</h1>
+
+<h3>Delete @Model.Name from the the inventory?</h3>
+<div>
+    <hr />
+    <div class="row">
+        <form asp-action="Delete" class="form-horizontal">
+            <dl class="row align-items-center">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" asp-for="Name" />
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ItemType)
+                </dt>
+                <dd class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" asp-for="ItemType" />
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ItemDescription)
+                </dt>
+                <dd class="col-sm-8">
+                    <textarea type="text" readonly class="form-control-plaintext" asp-for="ItemDescription" ></textarea>
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ItemPrice)
+                </dt>
+                <dd class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" asp-for="ItemPrice" />
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.ItemQuantity)
+                </dt>
+                <dd class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" asp-for="ItemQuantity" />
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.IsSoldOut)
+                </dt>
+                <dd class="col-sm-8">
+                    <input type="text" readonly class="form-control-plaintext" asp-for="IsSoldOut" />
+                </dd>
+            </dl>
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Remove" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+</div>

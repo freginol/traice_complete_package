@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @*<h1 class="display-4">Welcome</h1>*@
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+
+    <div class="jumbotron" align="center" style="margin-top: 20px;">
+        <h1><strong>Marigold Inventory Management</strong></h1>
+        <p class="lead">Welcome to the marigold hotel. We are delighted to have you lodge at our prestigeous rooms &amp; suites. </p>
+        @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+    </div>
+
+    <div class="row" align="justify" style="background-color:lightgray;opacity:0.85;margin:inherit;">
+        <div class="col-md-4">
+            <h2>Inventory</h2>
+            <p>
+                Business professionals will appreciate the ability to conduct their meeting in our fully equipped
+                Conference Center.  If you are looking for a place to relax, The Marigold Hotel &amp; Suites
+                offers sound proof rooms with scenic views for the peaceful get-away
+
+            </p>
+            <p><a class="btn btn-primary" asp-controller="Inventory" asp-action="Index">Home &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>About</h2>
+            <p>
+                At Marigold Hotel &amp; Suites, your comfort is out top priority. We have amenities to meet your every needs.
+                Amenities include: Fitness Center, Indoor Pool, Free High Speed Internet, Free Continental Breakfast.
+
+            </p>
+            <p><a class="btn btn-primary" href="#">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Contact</h2>
+            <p>
+                Marigold Hotel &amp; Suites is the perfect place for Meetings, Conferences or the casual get-away.
+                Contact us today to make a reservation
+            </p>
+            <p><a class="btn btn-primary" href="#">Contact Us &raquo;</a></p>
+        </div>
+    </div>
+</div>

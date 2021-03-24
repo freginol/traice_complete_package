@@ -1,0 +1,63 @@
+@model IEnumerable<InventoryManagement.App.Models.InventoryItemViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row mb-3">
+    <div class="col-md-6 offset-md-3">
+        <div class="text-center">
+            <h3>List of Items in Inventory</h3>
+        </div>
+    </div>
+    <div class="col-md-2 ml-auto">
+        <a class="btn btn-outline-success" asp-controller="Inventory" asp-action="Create">Create</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Price
+            </th>
+            <th>Quantity</th>
+            <th>
+                Is Sold Out
+            </th>
+            <th>
+                Actions
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.ItemType
+                    </td>
+                    <td>
+                       $@item.ItemPrice CAD 
+                    </td>
+                    <td>@item.ItemQuantity</td>
+                    <td>
+                        @item.IsSoldOut
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Inventory" asp-route-id="@item.Id">Details</a> | 
+                        <a asp-action="Delete" asp-controller="Inventory" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
