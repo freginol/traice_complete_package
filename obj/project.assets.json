@@ -8848,19 +8848,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fabianreginold\\.nuget\\packages\\": {}
+    "C:\\Users\\ssais\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\MCDA5510_Assignments-master\\InClassDemo\\InClassDemo.csproj",
+      "projectUniqueName": "C:\\Users\\ssais\\OneDrive\\Desktop\\workshop_2021\\FinalProject\\InClassDemo.csproj",
       "projectName": "InClassDemo",
-      "projectPath": "\\\\Mac\\Home\\Downloads\\MCDA5510_Assignments-master\\InClassDemo\\InClassDemo.csproj",
-      "packagesPath": "C:\\Users\\fabianreginold\\.nuget\\packages\\",
-      "outputPath": "\\\\Mac\\Home\\Downloads\\MCDA5510_Assignments-master\\InClassDemo\\obj\\",
+      "projectPath": "C:\\Users\\ssais\\OneDrive\\Desktop\\workshop_2021\\FinalProject\\InClassDemo.csproj",
+      "packagesPath": "C:\\Users\\ssais\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ssais\\OneDrive\\Desktop\\workshop_2021\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fabianreginold\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ssais\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8927,7 +8927,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

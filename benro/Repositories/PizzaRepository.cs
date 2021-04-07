@@ -42,13 +42,9 @@ namespace PizzaKnight.Repositories
         }
 
         public async Task<PizzaCust> GetByIdAsync(int? id)
-        {
-            return await _context.PizzaCust.FirstOrDefaultAsync(p => p.Id == id);
+        {            
+            return await _context.PizzaCust.FirstOrDefaultAsync(pizza => pizza.Id == id);
         }
-
-
-
-
 
         public bool Exists(int id)
         {

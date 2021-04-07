@@ -13,7 +13,6 @@ namespace PizzaKnight.Models
         {
             OrderList = new HashSet<OrderList>();
             OrderStatus = new HashSet<OrderStatus>();
-            PaymentInfo = new HashSet<PaymentInfo>();
         }
 
         public int Id { get; set; }
@@ -30,6 +29,5 @@ namespace PizzaKnight.Models
         public virtual CustFeedback CustFeedback { get; set; }
         public virtual ICollection<OrderList> OrderList { get; set; }
         public virtual ICollection<OrderStatus> OrderStatus { get; set; }
-        public virtual ICollection<PaymentInfo> PaymentInfo { get; set; }
     }
 }

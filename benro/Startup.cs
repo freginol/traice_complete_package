@@ -32,6 +32,7 @@ namespace PizzaKnight
                     options.UseSqlServer(Configuration.GetConnectionString("myDbConn")));
 
             services.AddScoped<IPizzaRepository, PizzaRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => Models.ShoppingCart.GetCart(sp));
             services.AddSession();

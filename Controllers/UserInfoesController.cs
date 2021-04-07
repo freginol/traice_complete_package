@@ -23,6 +23,20 @@ namespace InClassDemo.Models
             return View(await _context.UserInfo.ToListAsync());
         }
 
+
+        public async Task<IActionResult> GetDetails(string UserName,String Password)
+        {
+            
+            var userInfo = await _context.UserInfo
+                .FirstOrDefaultAsync(m => m.UserName == UserName);
+            if (userInfo == null)
+            {
+                return NotFound();
+            }
+
+            return View(userInfo);
+        }
+
         // GET: UserInfoes/Details/5
         public async Task<IActionResult> Details(string id)
         {

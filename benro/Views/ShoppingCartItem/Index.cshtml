@@ -43,7 +43,7 @@
 </table>
 
 <div align="right">
-    @if (Model.ShoppingCartTotal > 0)
+    @if (Model.ShoppingCartTotal >= 0)
     {
         <a asp-controller="Orders" asp-action="Checkout" class="btn btn-primary">Check Out</a>
     }
