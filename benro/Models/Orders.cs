@@ -26,6 +26,6 @@ namespace PizzaKnight.Models
         public string OrderPlaced { get; set; }
         public decimal OrderTotal { get; set; }
 
-        //public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        //public virtual ICollection<OrderDetail> OrderLines { get; set; }
     }
 }
