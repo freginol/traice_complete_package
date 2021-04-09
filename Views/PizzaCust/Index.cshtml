@@ -1,0 +1,31 @@
+﻿@model IEnumerable<PizzaKnight.Models.PizzaCust>
+
+@{
+    ViewData["Title"] = "Pizza Menu";
+}
+
+
+
+<h2>Pizza Menu</h2>
+<br />
+
+<h4>All Pizzas</h4>
+
+<div class="PizzaSummaryId">
+    @foreach (var pizza in Model)
+    {
+        @Html.Partial("PizzaSummary", pizza)
+
+    }
+ 
+</div>
+<br />
+<style>
+    .PizzaSummaryId {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        height: 500px;
+        padding: 10px;
+        margin-bottom: 100px;
+    }
+</style>
