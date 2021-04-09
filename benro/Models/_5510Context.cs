@@ -24,14 +24,14 @@ namespace PizzaKnight.Models
         public virtual DbSet<InvoiceInfo> InvoiceInfo { get; set; }
         public virtual DbSet<Item> Item { get; set; }
         public virtual DbSet<MenuControl> MenuControl { get; set; }
-        public virtual DbSet<OrderItem> OrderItem { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<OrderList> OrderList { get; set; }
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PaymentInfo> PaymentInfo { get; set; }
         public virtual DbSet<PizzaCust> PizzaCust { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCart { get; set; }
         public virtual DbSet<ShoppingCartItem> ShoppingCartItem { get; set; }
-    
         public virtual DbSet<UserInfo> UserInfo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -172,34 +172,23 @@ namespace PizzaKnight.Models
                     .HasConstraintName("FK__MenuContr__items__07C12930");
             });
 
-            modelBuilder.Entity<OrderItem>(entity =>
+            modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.HasKey(e => new { e.Ordid, e.Items })
-                    .HasName("PK_Person");
+                entity.Property(e => e.OrderDetailId).ValueGeneratedNever();
 
-                entity.Property(e => e.Ordid)
-                    .HasColumnName("ordid")
-                    .HasMaxLength(50);
+                entity.Property(e => e.PizzaCustId).HasColumnName("pizzaCustId");
 
-                entity.Property(e => e.Items)
-                    .HasColumnName("items")
-                    .HasMaxLength(25);
+                entity.Property(e => e.Price).HasColumnType("numeric(18, 2)");
 
-                entity.Property(e => e.Price)
-                    .HasColumnName("price")
-                    .HasColumnType("numeric(18, 0)");
+                entity.HasOne(d => d.Order)
+                    .WithMany(d => d.OrderLines)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK__OrderDeta__Order__4A8310C6");
 
-                entity.HasOne(d => d.ItemsNavigation)
-                    .WithMany(p => p.OrderItem)
-                    .HasForeignKey(d => d.Items)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderItem__items__04E4BC85");
-
-                entity.HasOne(d => d.Ord)
-                    .WithMany(p => p.OrderItem)
-                    .HasForeignKey(d => d.Ordid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OrderItem__ordid__03F0984C");
+                entity.HasOne(d => d.PizzaCust)
+                    .WithMany(d => d.OrderDetail)
+                    .HasForeignKey(d => d.PizzaCustId)
+                    .HasConstraintName("FK__OrderDeta__pizza__498EEC8D");
             });
 
             modelBuilder.Entity<OrderList>(entity =>
@@ -282,45 +271,80 @@ namespace PizzaKnight.Models
                     .HasConstraintName("FK__OrderStat__ordid__0A9D95DB");
             });
 
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.HasKey(e => e.OrderId)
+                    .HasName("PK_Order");
+
+                entity.Property(e => e.OrderId).ValueGeneratedNever();
+
+                entity.Property(e => e.AddressLine1)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.AddressLine2).HasMaxLength(25);
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.OrderPlaced)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.OrderTotal).HasColumnType("numeric(18, 2)");
+
+                entity.Property(e => e.PhoneNumber)
+                    .IsRequired()
+                    .HasMaxLength(12);
+
+                entity.Property(e => e.State)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.ZipCode)
+                    .IsRequired()
+                    .HasMaxLength(25);
+            });
+
             modelBuilder.Entity<PaymentInfo>(entity =>
             {
-                entity.HasKey(e => new { e.Custid, e.Ordid })
+                entity.HasKey(e => e.CustomerName)
                     .HasName("PK_payment");
 
-                entity.Property(e => e.Custid).HasColumnName("custid");
+                entity.Property(e => e.CustomerName).HasMaxLength(50);
 
-                entity.Property(e => e.Ordid)
-                    .HasColumnName("ordid")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Cardtype)
+                entity.Property(e => e.CardType)
                     .IsRequired()
-                    .HasColumnName("cardtype")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.Cardvalue)
-                    .HasColumnName("cardvalue")
-                    .HasColumnType("numeric(16, 0)");
+                entity.Property(e => e.CardValue).HasColumnType("numeric(16, 0)");
 
                 entity.Property(e => e.Cvv)
-                    .HasColumnName("cvv")
+                    .HasColumnName("CVV")
                     .HasColumnType("numeric(3, 0)");
 
-                entity.Property(e => e.Expirydate)
-                    .HasColumnName("expirydate")
-                    .HasColumnType("date");
-
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.PaymentInfo)
-                    .HasForeignKey(d => d.Custid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PaymentIn__custi__797309D9");
-
-                entity.HasOne(d => d.Ord)
-                    .WithMany(p => p.PaymentInfo)
-                    .HasForeignKey(d => d.Ordid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PaymentIn__ordid__787EE5A0");
+                entity.Property(e => e.ExpiryDate).HasColumnType("date");
             });
 
             modelBuilder.Entity<PizzaCust>(entity =>
@@ -348,16 +372,23 @@ namespace PizzaKnight.Models
 
             modelBuilder.Entity<ShoppingCart>(entity =>
             {
-                entity.Property(e => e.ShoppingCartId).HasMaxLength(1);
+                entity.Property(e => e.ShoppingCartId).HasMaxLength(1000);
             });
 
             modelBuilder.Entity<ShoppingCartItem>(entity =>
             {
-                entity.Property(e => e.ShoppingCartItemId).ValueGeneratedNever();
+                entity.Property(e => e.ShoppingCartItemId);
+
+                entity.Property(e => e.PizzaCustId).HasColumnName("pizzaCustId");
 
                 entity.Property(e => e.ShoppingCartId)
                     .IsRequired()
                     .HasMaxLength(1);
+
+                entity.HasOne(d => d.pizzaCust)
+                    .WithMany(p => p.ShoppingCartItem)
+                    .HasForeignKey(d => d.PizzaCustId)
+                    .HasConstraintName("FK__ShoppingC__pizza__46B27FE2");
             });
 
             modelBuilder.Entity<UserInfo>(entity =>

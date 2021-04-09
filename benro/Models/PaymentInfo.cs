@@ -9,14 +9,10 @@ namespace PizzaKnight.Models
 {
     public partial class PaymentInfo
     {
-        public int Custid { get; set; }
-        public string Ordid { get; set; }
-        public string Cardtype { get; set; }
-        public decimal Cardvalue { get; set; }
+        public string CustomerName { get; set; }
+        public string CardType { get; set; }
+        public decimal CardValue { get; set; }
         public decimal Cvv { get; set; }
-        public DateTime Expirydate { get; set; }
-
-        public virtual Customers Cust { get; set; }
-        public virtual OrderList Ord { get; set; }
+        public DateTime ExpiryDate { get; set; }
     }
 }

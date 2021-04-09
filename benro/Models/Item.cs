@@ -13,7 +13,6 @@ namespace PizzaKnight.Models
         {
             InvoiceInfo = new HashSet<InvoiceInfo>();
             MenuControl = new HashSet<MenuControl>();
-            OrderItem = new HashSet<OrderItem>();
         }
 
         public string Items { get; set; }
@@ -22,6 +21,5 @@ namespace PizzaKnight.Models
 
         public virtual ICollection<InvoiceInfo> InvoiceInfo { get; set; }
         public virtual ICollection<MenuControl> MenuControl { get; set; }
-        public virtual ICollection<OrderItem> OrderItem { get; set; }
     }
 }
