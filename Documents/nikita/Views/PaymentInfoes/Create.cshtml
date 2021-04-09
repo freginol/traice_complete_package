@@ -1,0 +1,52 @@
+﻿@model PizzaKnight.Models.PaymentInfo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Payment Information</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CardType" class="control-label"></label>
+                <select name="Cardtype" id="Cardtype">
+                    <option value="MasterCard">MasterCard</option>
+                    <option value="Visa">Visa</option>">
+                    <option value="AmericanExpress">American Express</option>">
+                </select>
+                <span asp-validation-for="CardType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CardValue" class="control-label"></label>
+                <input asp-for="CardValue" class="form-control" />
+                <span asp-validation-for="CardValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CVV" class="control-label"></label>
+                <input asp-for="CVV" class="form-control" />
+                <span asp-validation-for="CVV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input asp-for="ExpiryDate" placeholder="MM-YYYY" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Pay" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
