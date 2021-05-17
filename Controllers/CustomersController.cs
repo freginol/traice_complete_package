@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace InClassDemo.Controllers
+namespace PizzaKnight.Controllers
 {
     public class CustomersController : Controller
     {
@@ -41,6 +41,7 @@ namespace InClassDemo.Controllers
             return View(customers);
         }
 
+
         // GET: Customers/Create
         
         public async Task<IActionResult> Create()
@@ -55,13 +56,53 @@ namespace InClassDemo.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Addrses1,City,Province,Country,Postal,Phone,Emailaddress")] Models.Customers customers)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Addrses1,City,Province,Country,Postal,Phone,Emailaddress")] Models.Customers customers)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customers);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string canada = "^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]$";
+                string USA = "^[0-9]{5}(?:-[0-9]{4})?$";
+                Console.WriteLine("(((((((((((((((" + customers.Country);
+                Console.WriteLine("**********" + canada);
+                //customers.Id = customers.Id + 1;
+                if (string.Equals(customers.Country, "Canada"))
+                {
+
+                    if (System.Text.RegularExpressions.Regex.IsMatch(customers.Postal, canada))
+                    {
+                        _context.Add(customers);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("Create", "PaymentInfoes");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid Canadian Postal Code");
+                        return View(customers);
+                    }
+                }
+                else if (string.Equals(customers.Country, "USA"))
+                {
+                    if (System.Text.RegularExpressions.Regex.IsMatch(customers.Postal, USA))
+                    {
+                        _context.Add(customers);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("Create", "PaymentInfoes");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid American Postal Code");
+                        return View(customers);
+                    }
+                }
+            else
+            {
+                ModelState.AddModelError("", "Invalid details");
+                return View(customers);
+            }
+          
+
+                
+                
             }
             return View(customers);
         }

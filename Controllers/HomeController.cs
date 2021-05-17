@@ -1,4 +1,4 @@
-﻿using InClassDemo.Models;
+﻿using PizzaKnight.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InClassDemo.Controllers
+namespace PizzaKnight.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,6 +24,11 @@ namespace InClassDemo.Controllers
         }
 
         public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Delivery()
         {
             return View();
         }

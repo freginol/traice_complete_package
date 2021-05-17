@@ -9,8 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PizzaKnight.Repositories;
+using Microsoft.AspNetCore.Http;
 
-namespace InClassDemo
+namespace PizzaKnight
 {
     public class Startup
     {
@@ -21,6 +23,7 @@ namespace InClassDemo
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -28,6 +31,14 @@ namespace InClassDemo
             services.AddDbContext<Models._5510Context>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("myDbConn")));
 
+            services.AddScoped<IPizzaRepository, PizzaRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => Models.ShoppingCart.GetCart(sp));
+            services.AddSession();
+            services.AddMvc();
+            services.AddMemoryCache();
+            
             // services.AddDbContext<CustomerContext>(options => options.UseInMemoryDatabase("Customer"));
         }
 
@@ -49,7 +60,8 @@ namespace InClassDemo
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

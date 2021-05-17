@@ -8848,19 +8848,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ssais\\.nuget\\packages\\": {}
+    "C:\\Users\\fabianreginold\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ssais\\OneDrive\\Desktop\\workshop_2021\\FinalProject\\InClassDemo.csproj",
-      "projectName": "InClassDemo",
-      "projectPath": "C:\\Users\\ssais\\OneDrive\\Desktop\\workshop_2021\\FinalProject\\InClassDemo.csproj",
-      "packagesPath": "C:\\Users\\ssais\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ssais\\OneDrive\\Desktop\\workshop_2021\\FinalProject\\obj\\",
+      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\penultimate\\FinalProject\\benro\\PizzaKnight.csproj",
+      "projectName": "PizzaKnight",
+      "projectPath": "\\\\Mac\\Home\\Downloads\\penultimate\\FinalProject\\benro\\PizzaKnight.csproj",
+      "packagesPath": "C:\\Users\\fabianreginold\\.nuget\\packages\\",
+      "outputPath": "\\\\Mac\\Home\\Downloads\\penultimate\\FinalProject\\benro\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ssais\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\fabianreginold\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8927,7 +8927,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
